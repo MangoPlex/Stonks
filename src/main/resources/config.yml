@@ -1,0 +1,20 @@
+# Stonks configuration file
+
+market:
+  # Set the tax ratio for sell offers. The actual amount of money player can get is (units * pricePerUnit) * (1.0 - tax)
+  tax: 0.01                             # 1% of tax
+  
+  # The minimum price for 1 unit
+  minimumPrice: 0.5
+  
+  # The maximum price for 1 unit
+  unitPriceCap: 50000000.0
+  
+  # The units count player can offer
+  unitsCap: 25600
+  
+  # Maximum number of offers player can list
+  maxOffers: 36
+
+stocks:
+- "ITEM_ID_0"

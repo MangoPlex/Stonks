@@ -1,0 +1,17 @@
+name: Stonks
+authors: [nahkd123]
+version: 0.0.1-SNAPSHOT
+api-version: 1.17
+main: stonks.Stonks
+depend: [FeatherPowders]
+softdepend: [ManyItems]
+
+commands:
+  market:
+    description: Open Stocks Market
+    permission: stonks.normal.openmarket
+
+permissions:
+  stonks.normal.openmarket:
+    description: Allow player to open Stocks Market
+    default: true
