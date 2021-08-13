@@ -13,6 +13,7 @@ import featherpowders.items.CustomType;
 import featherpowders.items.ItemsDriver;
 import stonks.commands.MarketCommand;
 import stonks.events.ChatEventsHandler;
+import stonks.hooks.VaultEconomyHook;
 import stonks.players.StonksPlayer;
 import stonks.stock.OfferType;
 import stonks.stock.StockInfo;
@@ -49,6 +50,23 @@ public class Stonks extends JavaPlugin {
             });
             getServer().getPluginManager().disablePlugin(this);
             return;
+        }
+        
+        // Setup economy
+        if (getServer().getPluginManager().getPlugin("Vault") != null) {
+            System.out.println("[Stonks] Vault found, hooking...");
+            VaultEconomyHook vault = new VaultEconomyHook();
+            if (!vault.serviceAvailable()) System.err.println("[Stonks] Vault Economy service is not available. Look like you don't have economy plugin :(");
+            else StonksHelper.economy = vault;
+        }
+        if (StonksHelper.economy == null) {
+            getServer().getConsoleSender().sendMessage(new String[] {
+                    "",
+                    "§eWARNING: §fNo economy plugin found!",
+                    "§fStonks will ignore all balance check and allow player to create orders without",
+                    "§ftaking money",
+                    ""
+            });
         }
         
         saveResource("config.yml", false);

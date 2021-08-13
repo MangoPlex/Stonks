@@ -9,20 +9,25 @@ import org.bukkit.inventory.ItemStack;
 
 import featherpowders.items.CustomStack;
 import featherpowders.ui.chest.ChestUI;
+import stonks.hooks.EconomyHook;
 import stonks.stock.OfferType;
 import stonks.stock.StockInfo;
 import stonks.ui.StockUI;
 
 public class StonksHelper {
     
-    // TODO: Hook with Vault Economy Service
+    public static EconomyHook economy;
     
     public static boolean hasAtLeastMoney(Player player, double amount) {
-        return true;
+        return (economy != null && economy.hasMoney(player, amount)) || true;
     }
 
-    public static void takeMoney(Player player, double amount) {}
-    public static void giveMoney(Player player, double amount) {}
+    public static void takeMoney(Player player, double amount) {
+        if (economy != null) economy.takeMoney(player, amount);
+    }
+    public static void giveMoney(Player player, double amount) {
+        if (economy != null) economy.giveMoney(player, amount);
+    }
     
     public static HashMap<UUID, OfferType> offeringCustom = new HashMap<>();
     public static HashMap<UUID, Integer> offeringUnits = new HashMap<>();
