@@ -8,7 +8,7 @@ import net.milkbowl.vault.economy.Economy;
 
 public class VaultEconomyHook extends EconomyHook {
 
-    private boolean available = false;
+    private boolean available = true;
     private Economy economy;
     
     public VaultEconomyHook() {
